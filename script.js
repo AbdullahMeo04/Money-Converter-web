@@ -1,4 +1,4 @@
-var rates = {EUR: 1, USD: 1.08, GBP: 0.86, JPY: 162.5};
+var rates = { EUR: 1, USD: 1.08, GBP: 0.86, JPY: 162.5 };
 var symbols = { EUR: "€", USD: "$", GBP: "£", JPY: "¥" };
 
 var amountInput = document.getElementById("amount");
@@ -11,31 +11,27 @@ var resultText = document.getElementById("result");
 rangeSlider.addEventListener("input", function () {
     amountInput.value = rangeSlider.value;
 });
-
 amountInput.addEventListener("input", function () {
     rangeSlider.value = amountInput.value;
 });
 
 function convertCurrency() {
     var amount = parseFloat(amountInput.value);
-
-    if (isNaN(amount) || amount <= 0) {
+    if (amountInput.value === "" || isNaN(amount) || amount <= 0) {
         resultText.textContent = "Please enter a positive number.";
         return;
     }
-
     var amountInEUR = amount / rates[fromCurrency.value];
     var convertedAmount = amountInEUR * rates[toCurrency.value];
-
+    var symbol = symbols[toCurrency.value];
     resultText.textContent =
         "Result: " + " " + convertedAmount.toFixed(2) + " " + toCurrency.value+"("+symbol+")";
 }
 
 convertBtn.addEventListener("click", convertCurrency);
-
 amountInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         convertCurrency();
     }
-});
-
+    }
+);
