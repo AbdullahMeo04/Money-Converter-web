@@ -1,4 +1,5 @@
 var rates = {EUR: 1, USD: 1.08, GBP: 0.86, JPY: 162.5};
+var symbols = { EUR: "€", USD: "$", GBP: "£", JPY: "¥" };
 
 var amountInput = document.getElementById("amount");
 var rangeSlider = document.getElementById("Price");
@@ -27,7 +28,7 @@ function convertCurrency() {
     var convertedAmount = amountInEUR * rates[toCurrency.value];
 
     resultText.textContent =
-        "Result: " + convertedAmount.toFixed(2) + " " + toCurrency.value;
+        "Result: " + " " + convertedAmount.toFixed(2) + " " + toCurrency.value+"("+symbol+")";
 }
 
 convertBtn.addEventListener("click", convertCurrency);
@@ -37,3 +38,4 @@ amountInput.addEventListener("keydown", function (event) {
         convertCurrency();
     }
 });
+
